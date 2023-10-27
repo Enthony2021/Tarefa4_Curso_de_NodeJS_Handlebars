@@ -2,10 +2,10 @@
   "name": "10_tarefa_4",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js localhost 3000"
+    "start": "nodemon server.js localhost 3000"
   },
   "keywords": [],
   "author": "",

@@ -1,43 +1,23 @@
-const express = require('express')
-const exphbs = require('express-handlebars')
+const express = require("express");
+const exphbs = require("express-handlebars");
+const homeRoutes = require("./routes/homeRoutes.js");
 
-const app = express()
+class App {
+  constructor() {
+    this.app = express();
+    this.middlewares();
+    this.routes();
+  }
 
-// Definir a Engine
-app.engine('handlebars', exphbs.engine())
-app.set('view engine', 'handlebars')
+  middlewares() {
+    this.app.engine("handlebars", exphbs.engine());
+    this.app.set("view engine", "handlebars");
+    this.app.use(express.static("public"));
+  }
 
-// Arquivos Estáticos
-app.use(express.static('public'))
+  routes() {
+    this.app.use("/", homeRoutes);
+  }
+}
 
-const products = [
-    {
-        id: "1",
-        title: "Livro",
-        price: 12.99
-    },
-    {
-        id: "2",
-        title: "Cadeira",
-        price: 200.99
-    },
-    {
-        id: "3",
-        title: "Lâmpada",
-        price: 2.99
-    }
-]
-
-app.get('/', (req, res) => {
-    res.render('home', {products})
-})
-
-app.get('/product/:id', (req, res) => {
-    const product = products[parseInt(req.params.id) - 1]
-
-    res.render('product', {product})
-})
-
-app.listen(3000, () => {
-    console.log(`Servidor de pá em: http://localhost:3000`)
-})
+module.exports = new App().app;
