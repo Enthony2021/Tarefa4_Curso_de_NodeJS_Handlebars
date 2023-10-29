@@ -11,3 +11,4 @@ Será criado a pasta node_modules. Após isso, para iniciar e usar a aplicação
 ## Atualizações
 * Em parte do código atualizei para POO
 * Subdividi as pastas para o modelo MVC
+* Ts-node instalado para usar o Typescript
